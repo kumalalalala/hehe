@@ -1,18 +1,52 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Tự phát âm thanh</title>
-  </head>
-  <body>
-    <video autoplay muted playsinline style="display:none" id="autoVideo">
-      <source src="sacduc.mp4" type="video/mp4">
-    </video>
-    <script>
-      // Bỏ mute nếu được trình duyệt cho phép
-      const video = document.getElementById('autoVideo');
-      video.muted = false;
-      video.play();
-    </script>
-  </body>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Âm thanh tự động</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #111;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+    }
+
+    .center-text {
+      font-size: 2rem;
+      padding: 1rem;
+      max-width: 90%;
+    }
+
+    video {
+      display: none; /* Ẩn video khỏi giao diện, chỉ lấy âm thanh */
+    }
+  </style>
+</head>
+<body>
+  <!-- Video phát âm thanh, lặp lại, ẩn đi -->
+  <video id="bgvid" autoplay loop muted playsinline>
+    <source src="sacduc.mp4" type="video/mp4">
+    Trình duyệt của bạn không hỗ trợ video.
+  </video>
+
+  <!-- Dòng chữ ở chính giữa màn hình -->
+  <div class="center-text">
+    Ấn vào Onlyfans làm gì? Nghe cho tâm tịnh lên
+  </div>
+
+  <script>
+    // Bỏ mute nếu được phép
+    const video = document.getElementById("bgvid");
+    video.muted = false;
+    video.play().catch(e => {
+      console.warn("Không thể phát tự động:", e);
+    });
+  </script>
+</body>
 </html>
