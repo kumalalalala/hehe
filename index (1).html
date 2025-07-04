@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Phát âm thanh ngay lập tức</title>
+</head>
+<body>
+  <h1>Đang phát âm thanh...</h1>
+
+  <!-- Video bị ẩn nhưng chứa âm thanh -->
+  <video autoplay muted playsinline style="display:none" id="bgvid">
+    <source src="auto.mp4" type="video/mp4">
+    Trình duyệt không hỗ trợ video.
+  </video>
+
+  <script>
+    // Một số trình duyệt yêu cầu bật âm lượng sau khi bắt đầu phát
+    const video = document.getElementById("bgvid");
+
+    video.muted = false; // tắt muted nếu được phép
+
+    // Tự phát lần nữa nếu autoplay bị chặn (rất hiếm)
+    video.play().catch(e => {
+      console.warn("⚠️ Video không phát được ngay:", e);
+    });
+  </script>
+</body>
+</html>
